@@ -18,6 +18,10 @@ kvstore-client.sh -watch
 exit 1
 }
 
+if [ $# == 0 ]; then
+  usage
+fi
+
 HOST=http://127.0.0.1:5000
 
 METHOD=$1
