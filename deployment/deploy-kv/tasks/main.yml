@@ -1,0 +1,24 @@
+--- 
+- name: Install packages
+  apt: name={{item}} state=latest update_cache=yes
+  with_items:
+        - git
+        - python-pip
+        - python3-pip
+        - python-virtualenv
+        - sqlite3
+        - nginx
+  tags:
+        - packages
+
+- name: Create a virtualenv directory
+  file: path={{deploy_dir}} state=directory
+
+- name: Install dependencies
+  pip:
+     virtualenv: "{{deploy_dir}}"
+     virtualenv_python: python3.5
+     requirements: "{{requirements}}"
+
+
+

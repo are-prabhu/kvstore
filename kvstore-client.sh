@@ -1,5 +1,23 @@
 #!/bin/bash
 
+
+usage ()
+{
+  echo "usage: $0 [-get] | [-put] | [-watch]"
+  echo '''Example: 
+
+To Put a value 
+kvstore-client.sh -put foo bar 
+
+To Get a value 
+kvstore-client.sh -get foo 
+
+To Get a value 
+kvstore-client.sh -watch 
+  '''  
+exit 1
+}
+
 HOST=http://127.0.0.1:5000
 
 METHOD=$1
@@ -44,20 +62,31 @@ watchmessage () {
   return 0
 }
 
-
 case $METHOD in
 
-   -get | -GET) 
-      getmessage $KEYMESSAGE
+   -get | -GET ) 
+      if [ -z "$KEYMESSAGE" ]; then 
+         usage
+         exit 1
+      else
+         getmessage $KEYMESSAGE
+      fi
    ;;
 
-   -put | -PUT)
-      postmessage $KEYMESSAGE $VALUEMESSAGE
+   -put | -PUT )
+      if [ -z "$VALUEMESSAGE" ] ; then
+          usage 
+          exit 1
+      else
+          postmessage $KEYMESSAGE $VALUEMESSAGE
+      fi
    ;;
 
-   -watch | -WATCH)
+   -watch | -WATCH )
+
       kvorgfile_update
       kvorgnewfile_update
       publishmsg
       watchmessage      
+
 esac

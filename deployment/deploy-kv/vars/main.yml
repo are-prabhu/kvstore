@@ -1,0 +1,3 @@
+requirements: "/opt/kvstore/requirements.txt"
+deploy_dir: "/opt/kvsrc/venv"
+
