@@ -19,8 +19,10 @@ Run the following commant to deploy the kvstore
 
 ```
 ansible-playbook -s deploy-kv/Playbook.yml
-```
 
+```
+To set up kvstore-client edit the HOST variable according to your need
+(https://github.com/are-prabhu/kvstore/blob/master/kvstore-client.sh#L26)
 
 # CLIENT USAGE
 
