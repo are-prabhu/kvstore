@@ -1,0 +1,5 @@
+- name: restart gunicorn
+  command: sv restart gunicorn
+
+- name: restart nginx
+  command: /etc/init.d/nginx restart

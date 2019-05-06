@@ -87,4 +87,5 @@ def watch_data():
         return jsonify(all_kv)
 
 
-
+if __name__ == "__main__":
+    app.run(host='0.0.0.0',port=8080)

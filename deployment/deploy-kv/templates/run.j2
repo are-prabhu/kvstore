@@ -1,0 +1,7 @@
+#!/bin/bash
+
+
+source {{deploy_dir}}/bin/activate 
+cd /opt/kvstore/app
+exec chpst -u root {{deploy_dir}}/bin/gunicorn wsgi --bind=0.0.0.0:8080 --workers=1
+
