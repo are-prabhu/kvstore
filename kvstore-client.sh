@@ -22,7 +22,8 @@ if [ $# == 0 ]; then
   usage
 fi
 
-HOST=http://127.0.0.1:5000
+# Please change the host accoring to your setup
+HOST=http://127.0.0.1:8080
 
 METHOD=$1
 KEYMESSAGE=$2

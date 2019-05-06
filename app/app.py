@@ -1,9 +1,13 @@
+
 from flask import Flask, request, g, jsonify
 from flask import _app_ctx_stack
 import pdb
 app = Flask(__name__)
 import sqlite3
 
+
+
+''' sqlite connection initiating'''
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
@@ -14,6 +18,9 @@ def get_db():
       conn = g._database = sqlite3.connect('kvstore.db')
     return conn
 
+
+'''Put route to store key and value or 
+ verify key alredy exist else update '''
 @app.route("/put", methods=['POST'] )
 def put_data():
     if request.method == "POST":
@@ -49,6 +56,10 @@ def put_data():
         else:
             return "incorrect key and value"
 
+
+'''
+Get route to get the stored key value 
+'''
 @app.route("/get", methods=['POST'] )
 def get_data():
     if request.method == "POST":
@@ -72,7 +83,9 @@ def get_data():
     return "key value added successfully"
 
 
-
+'''
+Watch route to return full stored key value 
+'''
 @app.route("/watch", methods=['GET'] )
 def watch_data():
     if request.method == "GET":
